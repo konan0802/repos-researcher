@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    background-color: #EDEDE7;
+}
+header {
+    display: flex;
+    background-color: #5F3232;
+    padding: 30px;
+}
+.logo {
+    color: #EDEDE7;
+    text-decoration: none;
+    font-size: 35px;
+}
+.navbar {
+    display:flex;
+    margin: 0 50px 0 auto;
+    align-items:center;
+}
+.navbar-item {
+    color: #EDEDE7;
+    text-decoration: none;
+    margin: 0 30px;
+    font-size: 20px;
+}
+.navbar-item:hover {
+    text-decoration: underline;
+}
+.container h1 {
+    position: relative;
+    top: 45px;
+    left: 100px;
+    color: #262020;
+    font-size: 35px;
+}
