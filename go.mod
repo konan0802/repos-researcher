@@ -1,4 +1,4 @@
-module github.com/konan0802/github-repos-researcher
+module github.com/konan0802/repos-researcher
 
 go 1.15
 
