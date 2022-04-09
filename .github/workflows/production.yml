@@ -38,9 +38,9 @@ jobs:
       - name: Lambda publish version
         id: publish-version
         run: |
-          echo "version=$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description ${{ steps.date.outputs.date }}).Version" >> $GITHUB_ENV
+          echo "::set-output name=version::$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description ${{ steps.date.outputs.date }} | jq -r '.Version')"
 
       - name: Lambda update alias
         id: update-alias
         run: |
-          run: echo ${{ env.version }}
+          run: echo ${{ steps.publish-version.outputs.version }}
