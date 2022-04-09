@@ -33,7 +33,7 @@ jobs:
         env:
           TZ: "Asia/Tokyo"
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
+        run: echo "::set-output name=date::$(date +'%Y%m%d-%H:%M')"
 
       - name: Lambda publish version
         id: publish-version
