@@ -37,10 +37,8 @@ jobs:
 
       - name: Lambda publish version
         id: publish-version
-        run: |
-          echo "::set-output name=version::$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description ${{ steps.date.outputs.date }} | jq -r '.Version')"
+        run: echo "::set-output name=version::$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description ${{ steps.date.outputs.date }} | jq -r '.Version')"
 
       - name: Lambda update alias
         id: update-alias
-        run: |
-          echo ${{ steps.publish-version.outputs.version }}
+        run: aws lambda update-alias --function-name $LAMBDA_FUNCTION_NAME --name prd --function-version ${{ steps.publish-version.outputs.version }}
