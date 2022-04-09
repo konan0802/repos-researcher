@@ -10,10 +10,6 @@ import (
 )
 
 func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	// httpリクエストの情報を取得
-	body := request.Body
-	pathParam := request.PathParameters["pathparam"]
-	queryParam := request.QueryStringParameters["queryparam"]
 
 	// 依存関係を注入
 	gInf := infra.NewGitHubInfra()
@@ -23,19 +19,19 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 
 	// ルーティングの設定
 	var res []byte
-	switch pathParam {
+	switch request.Resource {
 	case "/searchaccount":
-		res = hdr.SearchAccount(queryParam)
+		res = hdr.SearchAccount(request)
 	case "/searchrepository":
-		res = hdr.SearchRepository(queryParam)
+		res = hdr.SearchRepository(request)
 	case "/fetchaccount":
-		res = hdr.FetchAccount(queryParam)
+		res = hdr.FetchAccount(request)
 	case "/fetchrepository":
-		res = hdr.FetchRepository(queryParam)
+		res = hdr.FetchRepository(request)
 	case "/saveaccount":
-		res = hdr.SaveAccount(body)
+		res = hdr.SaveAccount(request)
 	case "/saverepository":
-		res = hdr.SaveRepository(body)
+		res = hdr.SaveRepository(request)
 	default:
 		return events.APIGatewayProxyResponse{
 			Body:       `Error: 404 not found`,

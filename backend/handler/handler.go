@@ -2,15 +2,17 @@ package handler
 
 import (
 	"repos-researcher/usecase"
+
+	"github.com/aws/aws-lambda-go/events"
 )
 
 type Handler interface {
-	SearchAccount(queryParam string) []byte
-	SearchRepository(queryParam string) []byte
-	FetchAccount(queryParam string) []byte
-	FetchRepository(queryParam string) []byte
-	SaveAccount(body string) []byte
-	SaveRepository(body string) []byte
+	SearchAccount(events.APIGatewayProxyRequest) []byte
+	SearchRepository(events.APIGatewayProxyRequest) []byte
+	FetchAccount(events.APIGatewayProxyRequest) []byte
+	FetchRepository(events.APIGatewayProxyRequest) []byte
+	SaveAccount(events.APIGatewayProxyRequest) []byte
+	SaveRepository(events.APIGatewayProxyRequest) []byte
 }
 
 type handler struct {
@@ -23,28 +25,28 @@ func NewHandler(uc usecase.Usecase) Handler {
 	}
 }
 
-func (hdr handler) SearchAccount(queryParam string) []byte {
-	b := []byte(queryParam)
+func (hdr handler) SearchAccount(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("SearchAccount")
 	return b
 }
 
-func (hdr handler) SearchRepository(queryParam string) []byte {
-	b := []byte(queryParam)
+func (hdr handler) SearchRepository(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("SearchRepository")
 	return b
 }
-func (hdr handler) FetchAccount(queryParam string) []byte {
-	b := []byte(queryParam)
+func (hdr handler) FetchAccount(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("FetchAccount")
 	return b
 }
-func (hdr handler) FetchRepository(queryParam string) []byte {
-	b := []byte(queryParam)
+func (hdr handler) FetchRepository(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("FetchRepository")
 	return b
 }
-func (hdr handler) SaveAccount(body string) []byte {
-	b := []byte(body)
+func (hdr handler) SaveAccount(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("SaveAccount")
 	return b
 }
-func (hdr handler) SaveRepository(body string) []byte {
-	b := []byte(body)
+func (hdr handler) SaveRepository(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("SaveRepository")
 	return b
 }
