@@ -43,4 +43,4 @@ jobs:
       - name: Lambda update alias
         id: update-alias
         run: |
-          run: echo ${{ steps.publish-version.outputs.version }}
+          echo ${{ steps.publish-version.outputs.version }}
