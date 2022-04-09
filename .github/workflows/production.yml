@@ -1,4 +1,4 @@
-name: Deploy container image to AWS Lambda
+name: Deploy container image to AWS Lambda（prd）
 on:
   push:
     branches:
@@ -9,7 +9,7 @@ env:
   AWS_ROLE_SESSION_NAME: ${{ secrets.AWS_ROLE_SESSION_NAME }}
   AWS_REGION: ap-northeast-1
   ECR_REPOSITORY: repos-researcher
-  LAMBDA_FUNCTION_NAME: repos-researcher
+  LAMBDA_FUNCTION_NAME: repos-researcher:prd
 
 permissions:
   id-token: write
@@ -44,6 +44,20 @@ jobs:
           # be deployed to Lambda.
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          #  Update Lambda configuration
-          aws lambda update-function-code --function-name $LAMBDA_FUNCTION_NAME --image-uri $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         working-directory: ./backend
+
+      - name: Get current date and time
+        env:
+          TZ: "Asia/Tokyo"
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M')"
+
+      - name: Lambda publish version
+        id: publish-version
+        run: |
+          echo "::set-output name=version::$(aws lambda publish-version --function-name $LAMBDA_FUNCTION_NAME --description ${{ steps.date.outputs.date }})" >> $GITHUB_ENV
+
+      - name: Lambda update alias
+        id: update-alias
+        run: |
+          run: echo ${{ steps.publish-version.outputs.version }}
