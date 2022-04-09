@@ -1,0 +1,162 @@
+swagger: "2.0"
+
+info:
+  version: "1.0.0"
+  title: repos-researcher
+
+paths:
+  /search/account:
+    get:
+      description: |
+        GitHubアカウントの検索を行う
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /search/repository:
+    get:
+      description: |
+        GitHubリポジトリの検索を行う
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /fettch/account:
+    get:
+      description: |
+        保存したGitHubアカウントを取得する
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /fettch/repository:
+    get:
+      description: |
+        保存したGitHubリポジトリを取得する
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /save/account:
+    post:
+      description: |
+        GitHubアカウントの保存を行う
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /save/repository:
+    post:
+      description: |
+        GitHubリポジトリの保存を行う
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
