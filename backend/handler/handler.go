@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"repos-researcher/usecase"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -26,27 +27,32 @@ func NewHandler(uc usecase.Usecase) Handler {
 }
 
 func (hdr handler) SearchAccount(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("SearchAccount")
+	test1 := request.MultiValueQueryStringParameters["test"]
+	fmt.Printf("test1: %v\n", test1)
+	test2 := request.QueryStringParameters["test"]
+	fmt.Printf("test2: %v\n", test2)
+
+	b := []byte("SearchAccountTest")
 	return b
 }
 
 func (hdr handler) SearchRepository(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("SearchRepository")
+	b := []byte("SearchRepositoryTest")
 	return b
 }
 func (hdr handler) FetchAccount(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("FetchAccount")
+	b := []byte("FetchAccountTest")
 	return b
 }
 func (hdr handler) FetchRepository(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("FetchRepository")
+	b := []byte("FetchRepositoryTest")
 	return b
 }
 func (hdr handler) SaveAccount(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("SaveAccount")
+	b := []byte("SaveAccountTest")
 	return b
 }
 func (hdr handler) SaveRepository(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("SaveRepository")
+	b := []byte("SaveRepositoryTest")
 	return b
 }
