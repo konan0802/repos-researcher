@@ -27,12 +27,10 @@ func NewHandler(uc usecase.Usecase) Handler {
 }
 
 func (hdr handler) SearchAccount(request events.APIGatewayProxyRequest) []byte {
-	test1 := request.MultiValueQueryStringParameters["test"]
-	fmt.Printf("test1: %v\n", test1)
 	test2 := request.QueryStringParameters["test"]
 	fmt.Printf("test2: %v\n", test2)
 
-	b := []byte("SearchAccountTest")
+	b := []byte("SearchAccountTest " + test2)
 	return b
 }
 
