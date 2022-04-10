@@ -1,9 +1,8 @@
 package main
 
 import (
-	"repos-researcher/handler"
+	"repos-researcher/controller"
 	"repos-researcher/infra"
-	"repos-researcher/usecase"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -14,8 +13,7 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	// 依存関係を注入
 	gInf := infra.NewGitHubInfra()
 	dInf := infra.NewDynamoDBInfra()
-	uc := usecase.NewUseCase(gInf, dInf)
-	hdr := handler.NewHandler(uc)
+	hdr := controller.NewController(gInf, dInf)
 
 	// ルーティングの設定
 	var res []byte
