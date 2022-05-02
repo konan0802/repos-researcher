@@ -11,10 +11,12 @@ import (
 type Handler interface {
 	SearchAccount(events.APIGatewayProxyRequest) []byte
 	SearchRepository(events.APIGatewayProxyRequest) []byte
-	FetchAccount(events.APIGatewayProxyRequest) []byte
-	FetchRepository(events.APIGatewayProxyRequest) []byte
 	SaveAccount(events.APIGatewayProxyRequest) []byte
 	SaveRepository(events.APIGatewayProxyRequest) []byte
+	FetchSavedAccount(events.APIGatewayProxyRequest) []byte
+	FetchSavedRepository(events.APIGatewayProxyRequest) []byte
+	DeleteSavedAccount(events.APIGatewayProxyRequest) []byte
+	DeleteSavedRepository(events.APIGatewayProxyRequest) []byte
 }
 
 type handler struct {
@@ -40,19 +42,27 @@ func (hdr handler) SearchRepository(request events.APIGatewayProxyRequest) []byt
 	b := []byte("SearchRepositoryTest")
 	return b
 }
-func (hdr handler) FetchAccount(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("FetchAccountTest")
-	return b
-}
-func (hdr handler) FetchRepository(request events.APIGatewayProxyRequest) []byte {
-	b := []byte("FetchRepositoryTest")
-	return b
-}
 func (hdr handler) SaveAccount(request events.APIGatewayProxyRequest) []byte {
 	b := []byte("SaveAccountTest")
 	return b
 }
 func (hdr handler) SaveRepository(request events.APIGatewayProxyRequest) []byte {
 	b := []byte("SaveRepositoryTest")
+	return b
+}
+func (hdr handler) FetchSavedAccount(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("FetchSavedAccountTest")
+	return b
+}
+func (hdr handler) FetchSavedRepository(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("FetchSavedRepositoryTest")
+	return b
+}
+func (hdr handler) DeleteSavedAccount(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("DeleteSavedAccountTest")
+	return b
+}
+func (hdr handler) DeleteSavedRepository(request events.APIGatewayProxyRequest) []byte {
+	b := []byte("DeleteSavedRepositoryTest")
 	return b
 }
