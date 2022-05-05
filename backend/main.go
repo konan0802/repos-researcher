@@ -3,6 +3,7 @@ package main
 import (
 	"repos-researcher/handler"
 	"repos-researcher/infra"
+	"repos-researcher/usecase"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -23,14 +24,18 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		res = hdr.SearchAccount(request)
 	case "/searchrepository":
 		res = hdr.SearchRepository(request)
-	case "/fetchaccount":
-		res = hdr.FetchAccount(request)
-	case "/fetchrepository":
-		res = hdr.FetchRepository(request)
 	case "/saveaccount":
 		res = hdr.SaveAccount(request)
 	case "/saverepository":
 		res = hdr.SaveRepository(request)
+	case "/fetchsavedaccount":
+		res = hdr.FetchSavedAccount(request)
+	case "/fetchsavedrepository":
+		res = hdr.FetchSavedRepository(request)
+	case "/deletesavedaccount":
+		res = hdr.DeleteSavedAccount(request)
+	case "/deletesavedrepository":
+		res = hdr.DeleteSavedRepository(request)
 	default:
 		return events.APIGatewayProxyResponse{
 			Body:       `Error: 404 not found`,
