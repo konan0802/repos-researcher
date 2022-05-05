@@ -1,6 +1,8 @@
 package usecase
 
-import "repos-researcher/domain/repository"
+import (
+	"repos-researcher/domain/repository"
+)
 
 type Usecase interface {
 }
@@ -10,7 +12,7 @@ type usecase struct {
 	drp repository.DynamoDBRepository
 }
 
-func NewUseCase(grp repository.GitHubRepository, drp repository.DynamoDBRepository) Usecase {
+func NewUsecase(grp repository.GitHubRepository, drp repository.DynamoDBRepository) Usecase {
 	return &usecase{
 		grp: grp,
 		drp: drp,

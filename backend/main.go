@@ -14,8 +14,8 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	// 依存関係を注入
 	gInf := infra.NewGitHubInfra()
 	dInf := infra.NewDynamoDBInfra()
-	uc := usecase.NewUseCase(gInf, dInf)
-	hdr := handler.NewHandler(uc)
+	usc := usecase.NewUsecase(gInf, dInf)
+	hdr := handler.NewHandler(usc)
 
 	// ルーティングの設定
 	var res []byte
@@ -24,14 +24,18 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 		res = hdr.SearchAccount(request)
 	case "/searchrepository":
 		res = hdr.SearchRepository(request)
-	case "/fetchaccount":
-		res = hdr.FetchAccount(request)
-	case "/fetchrepository":
-		res = hdr.FetchRepository(request)
 	case "/saveaccount":
 		res = hdr.SaveAccount(request)
 	case "/saverepository":
 		res = hdr.SaveRepository(request)
+	case "/fetchsavedaccount":
+		res = hdr.FetchSavedAccount(request)
+	case "/fetchsavedrepository":
+		res = hdr.FetchSavedRepository(request)
+	case "/deletesavedaccount":
+		res = hdr.DeleteSavedAccount(request)
+	case "/deletesavedrepository":
+		res = hdr.DeleteSavedRepository(request)
 	default:
 		return events.APIGatewayProxyResponse{
 			Body:       `Error: 404 not found`,
