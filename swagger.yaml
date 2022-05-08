@@ -1,16 +1,56 @@
 swagger: "2.0"
 
 info:
-  version: "1.0.0"
+  version: 1.0.0
   title: repos-researcher
 
 paths:
   /search/account:
     get:
-      description: |
-        GitHubアカウントの検索を行う
-
+      description: GitHubアカウントの検索を行う<br>利用API:https://docs.github.com/ja/rest/search#search-users
       parameters:
+        - name: user
+          in: query
+          description: ユーザー名
+          required: false
+          type: string
+          format: string
+        - name: max-followers
+          in: query
+          description: 最高のフォロワー数
+          required: false
+          type: integer
+          format: int32
+        - name: min-followers
+          in: query
+          description: 最低のフォロワー数
+          required: false
+          type: integer
+          format: int32
+        - name: language
+          in: query
+          description: 指定の言語のリポジトリを有するアカウント
+          required: false
+          type: integer
+          format: int32
+        - name: repos
+          in: query
+          description: ユーザーが所有するリポジトリの数
+          required: false
+          type: integer
+          format: int32
+        - name: location
+          in: query
+          description: プロフィールに表示されている国
+          required: false
+          type: integer
+          format: int32
+        - name: sort
+          in: query
+          description: ソート（降順）
+          required: false
+          type: integer
+          format: int32
 
       responses:
         200:
@@ -34,59 +74,7 @@ paths:
   /search/repository:
     get:
       description: |
-        GitHubリポジトリの検索を行う
-
-      parameters:
-
-      responses:
-        200:
-          description: Successful responses
-          schema:
-            title: ArrayOfPosts
-            type: array
-            items:
-              title: Posts
-              type: object
-              properties:
-                name:
-                  type: string
-                title:
-                  type: string
-                published:
-                  type: boolean
-                content:
-                  type: string
-
-  /fettch/account:
-    get:
-      description: |
-        保存したGitHubアカウントを取得する
-
-      parameters:
-
-      responses:
-        200:
-          description: Successful responses
-          schema:
-            title: ArrayOfPosts
-            type: array
-            items:
-              title: Posts
-              type: object
-              properties:
-                name:
-                  type: string
-                title:
-                  type: string
-                published:
-                  type: boolean
-                content:
-                  type: string
-
-  /fettch/repository:
-    get:
-      description: |
-        保存したGitHubリポジトリを取得する
+        GitHubリポジトリの検索を行う<br>利用API:https://docs.github.com/ja/rest/search#search-repositories
 
       parameters:
 
@@ -139,6 +127,110 @@ paths:
     post:
       description: |
         GitHubリポジトリの保存を行う
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /fettch/savedaccount:
+    get:
+      description: |
+        保存したGitHubアカウントを取得する
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /fettch/savedrepository:
+    get:
+      description: |
+        保存したGitHubリポジトリを取得する
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /delete/savedaccount:
+    delete:
+      description: |
+        保存したGitHubアカウントを取得する
+
+      parameters:
+
+      responses:
+        200:
+          description: Successful responses
+          schema:
+            title: ArrayOfPosts
+            type: array
+            items:
+              title: Posts
+              type: object
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                published:
+                  type: boolean
+                content:
+                  type: string
+
+  /delete/savedrepository:
+    delete:
+      description: |
+        保存したGitHubリポジトリを取得する
 
       parameters:
 

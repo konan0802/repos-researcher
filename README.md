@@ -30,3 +30,5 @@
     * GitHub Actions
     * Amazon ECR
     * ※ mainブランチへのpushをトリガーにコンテナイメージをビルドしてECRにプッシュし、Lambdaにデプロイ
+### ※今後の検討事項
+* [aws-apigateway-importerを使ったAmazon API Gatewayの設定](https://www.ogis-ri.co.jp/otc/hiroba/technical/WebAPI/part3.html)

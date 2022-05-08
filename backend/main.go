@@ -20,21 +20,21 @@ func Handler(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespo
 	// ルーティングの設定
 	var res []byte
 	switch request.Resource {
-	case "/searchaccount":
+	case "/search/account":
 		res = hdr.SearchAccount(request)
-	case "/searchrepository":
+	case "/search/repository":
 		res = hdr.SearchRepository(request)
-	case "/saveaccount":
+	case "/save/account":
 		res = hdr.SaveAccount(request)
-	case "/saverepository":
+	case "/save/repository":
 		res = hdr.SaveRepository(request)
-	case "/fetchsavedaccount":
+	case "/fetch/savedaccount":
 		res = hdr.FetchSavedAccount(request)
-	case "/fetchsavedrepository":
+	case "/fetch/savedrepository":
 		res = hdr.FetchSavedRepository(request)
-	case "/deletesavedaccount":
+	case "/delete/savedaccount":
 		res = hdr.DeleteSavedAccount(request)
-	case "/deletesavedrepository":
+	case "/delete/savedrepository":
 		res = hdr.DeleteSavedRepository(request)
 	default:
 		return events.APIGatewayProxyResponse{
