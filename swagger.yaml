@@ -16,43 +16,36 @@ paths:
           description: ユーザー名
           required: false
           type: string
-          format: string
         - name: max-followers
           in: query
           description: 最高のフォロワー数
           required: false
           type: integer
-          format: int32
         - name: min-followers
           in: query
           description: 最低のフォロワー数
           required: false
           type: integer
-          format: int32
         - name: language
           in: query
           description: 指定の言語のリポジトリを有するアカウント
           required: false
           type: integer
-          format: int32
         - name: repos
           in: query
           description: ユーザーが所有するリポジトリの数
           required: false
           type: integer
-          format: int32
         - name: location
           in: query
           description: プロフィールに表示されている国
           required: false
           type: integer
-          format: int32
         - name: sort
           in: query
           description: ソート（降順）
           required: false
           type: integer
-          format: int32
 
       responses:
         200:
