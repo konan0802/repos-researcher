@@ -7,7 +7,9 @@ info:
 paths:
   /search/account:
     get:
-      description: GitHubアカウントの検索を行う<br>利用API:https://docs.github.com/ja/rest/search#search-users
+      description: GitHubアカウントの検索を行う<br>
+        ・https://docs.github.com/ja/rest/search#search-users<br>
+        ・https://docs.github.com/ja/rest/users/users#get-a-user
       parameters:
         - name: user
           in: query
@@ -56,25 +58,57 @@ paths:
         200:
           description: Successful responses
           schema:
-            title: ArrayOfPosts
             type: array
             items:
-              title: Posts
               type: object
               properties:
+                login:
+                  type: string
+                  example: konan0802
                 name:
                   type: string
-                title:
+                  example: Konan
+                avatar_url:
                   type: string
-                published:
-                  type: boolean
-                content:
+                  example: https://avatars.githubusercontent.com/u/46038618?v=4
+                company:
                   type: string
+                  example: null
+                location:
+                  type: string
+                  example: Tokyo
+                twname:
+                  type: string
+                  example: null
+                repos:
+                  type: integer
+                  example: 17
+                gists:
+                  type: integer
+                  example: 1
+                followers:
+                  type: integer
+                  example: 0
+                following:
+                  type: integer
+                  example: 0
+                created_at:
+                  type: string
+                  example: 2018-12-21T02:26:31Z
+                updated_at:
+                  type: string
+                  example: 2022-05-08T06:19:26Z
+        304:
+          description: Not modified
+        422:
+          description: Validation failed
+        503:
+          description: Service unavailable
 
   /search/repository:
     get:
       description: |
-        GitHubリポジトリの検索を行う<br>利用API:https://docs.github.com/ja/rest/search#search-repositories
+        GitHubリポジトリの検索を行う<br>・https://docs.github.com/ja/rest/search#search-repositories
 
       parameters:
 
@@ -96,6 +130,12 @@ paths:
                   type: boolean
                 content:
                   type: string
+        304:
+          description: Not modified
+        422:
+          description: Validation failed
+        503:
+          description: Service unavailable
 
   /save/account:
     post:
