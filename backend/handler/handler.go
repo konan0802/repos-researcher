@@ -2,7 +2,6 @@ package handler
 
 import (
 	"fmt"
-	"repos-researcher/domain/model"
 	"repos-researcher/usecase"
 
 	"github.com/aws/aws-lambda-go/events"
@@ -30,7 +29,7 @@ func NewHandler(usc usecase.Usecase) Handler {
 }
 
 func (hdr handler) SearchAccount(request events.APIGatewayProxyRequest) []byte {
-	var query model.SearchAccountQueryForm
+	//svar query model.SearchAccountQueryForm
 	test2 := request.QueryStringParameters["test"]
 	fmt.Printf("test2: %v\n", test2)
 
